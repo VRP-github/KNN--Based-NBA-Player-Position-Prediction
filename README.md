@@ -1,1 +1,1 @@
-# KNN--Based-NBA-Player-Position-Prediction
+# KNN--Based NBA Player Position Prediction
