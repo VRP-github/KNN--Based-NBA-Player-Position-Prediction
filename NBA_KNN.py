@@ -49,7 +49,7 @@ x_testing = nba_dummy_testset[['AST', 'STL', 'BLK', 'TRB', 'FGA', 'FG%', '3P', '
 y_testing = lab.transform(nba_dummy_testset["Pos"])
 
 folder_name = "saved_model"
-file_name_knn = "nba_knn.pkl"
+file_name_knn = "nba_knn.joblib"
 
 # Saving the KNN model in the model folder 
 file_path = os.path.join(folder_name, file_name_knn)
