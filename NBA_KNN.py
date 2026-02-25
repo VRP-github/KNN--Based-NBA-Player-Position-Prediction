@@ -5,6 +5,9 @@ from sklearn.model_selection import train_test_split, cross_val_score
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, confusion_matrix
 from sklearn.model_selection import StratifiedKFold
+from joblib import Parallel, delayed 
+import joblib
+import os 
 
 
 #Loading the nba dataset for training 
@@ -45,8 +48,21 @@ nba_dummy_testset = pd.read_csv('dummy_test.csv')
 x_testing = nba_dummy_testset[['AST', 'STL', 'BLK', 'TRB', 'FGA', 'FG%', '3P', '3PA', 'PF', 'eFG%', 'FT%', 'DRB', '3P%', '2P', '2P%']]
 y_testing = lab.transform(nba_dummy_testset["Pos"])
 
+folder_name = "saved_model"
+file_name_knn = "nba_knn.pkl"
+
+# Saving the KNN model in the model folder 
+file_path = os.path.join(folder_name, file_name_knn)
+os.makedirs(folder_name, exist_ok=True)
+
+joblib.dump(knn, file_path)
+
+# loading the model from the model
+knn_saved_model = joblib.load(file_path)
+
+
 # Testing the Dummy Testset
-y_test_predict = knn.predict(x_testing)
+y_test_predict = knn_saved_model.predict(x_testing)
 testingset_accuracy = (accuracy_score(y_testing, y_test_predict ) * 100)
 
 
