@@ -25,6 +25,9 @@ y_set = lab.fit_transform(nba_stats['Pos'])
 # Saving all the position labels 
 position_labels = lab.classes_
 
+#saving the encoded 
+joblib.dump(position_labels, 'position_labels.joblib')
+
 # Only considering the Important features
 x_set = nba_stats[['AST', 'STL', 'BLK', 'TRB', 'FGA', 'FG%', '3P', '3PA', 'PF', 'eFG%', 'FT%', 'DRB', '3P%', '2P', '2P%']]
 
